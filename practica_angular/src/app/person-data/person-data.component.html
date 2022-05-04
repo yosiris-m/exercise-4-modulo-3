@@ -1,0 +1,118 @@
+<main class="warapper">
+  <mat-card-content class="containerForm">
+    <h1>
+      {{ header }}
+    </h1>
+    <form [formGroup]="personForm" (ngSubmit)="saveContact()">
+      <fieldset class="form">
+        <legend class="subtitleForm"> Datos personales</legend>
+        <span>Nombre:</span>
+        <mat-form-field>
+          <input matInput formControlName="name" [(ngModel)]="person.name" name="name" minlength="3" type="text"
+                 class="input" required>
+          <mat-error *ngIf="personForm.value.name">Tiene que contener al menos 3 caracteres</mat-error>
+        </mat-form-field>
+        <span>Apellido:</span>
+        <mat-form-field>
+          <input matInput formControlName="lastName" [(ngModel)]="person.lastName" class="input" name="lastName"
+                 minlength="3" type="text"
+                 required>
+          <mat-error *ngIf="personForm.value.lastName">Tiene que contener al menos 3 caracteres</mat-error>
+        </mat-form-field>
+        <span>Edad:</span>
+        <mat-form-field>
+          <input matInput formControlName="age" [(ngModel)]="person.age" name="age" type="number">
+          <mat-error *ngIf="personForm.value.age">Tiene que estar entre 0 y 125</mat-error>
+        </mat-form-field>
+        <span>DNI:</span>
+        <mat-form-field>
+          <input matInput formControlName="legalId" [(ngModel)]="person.legalId" name="legalId" maxlength="9"
+                 type="text">
+          <mat-error *ngIf="personForm.value.legalId">Tiene que tener al menos 9 caracteres</mat-error>
+        </mat-form-field>
+        <span>Fecha de cumpleaños:</span>
+        <mat-form-field>
+          <input matInput formControlName="birthday" [(ngModel)]="person.birthday" name="birthday" type="date">
+          <mat-error *ngIf="personForm.value.birthday">Tiene que contener al menos 3 caracteres</mat-error>
+        </mat-form-field>
+      </fieldset>
+      <fieldset class="form">
+        <legend class="subtitleForm"> Datos complementarios</legend>
+        <span>Color favorito:</span>
+        <mat-form-field>
+          <input matInput formControlName="favoriteColor" [(ngModel)]="person.favoriteColor" name="favoriteColor"
+                 minlength="3" type="text">
+          <mat-error *ngIf="personForm.value.favoriteColor">Tiene que contener al menos 3 caracteres</mat-error>
+        </mat-form-field>
+        <span>Sexo:</span>
+        <mat-form-field>
+          <mat-select formControlName="gender" [(ngModel)]="person.gender" name="gender">
+            <mat-option>Selececiona..</mat-option>
+            <mat-option value="Hombre">Hombre</mat-option>
+            <mat-option value="Mujer">Mujer</mat-option>
+            <mat-option value="Otros">Otro</mat-option>
+            <mat-option value="No espeficado">No especificado</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="btnForm">
+          <button id="submit" class="btnSubmit" mat-raised-button type="submit"> Añadir al listado</button>
+          <input value="Eliminar" type="button" mat-raised-button class="btnDeleted" (click)="deleteContact1()"/>
+        </div>
+      </fieldset>
+    </form>
+  </mat-card-content>
+  <br>
+
+  <mat-card-content class="container">
+    <div class="titleList">
+      <h1>Lista de contacto
+        <mat-icon class="iconList">supervisor_account</mat-icon>
+        <span class="iconForm">{{n}}</span></h1>
+    </div>
+    <form class="listForm">
+      <div class="scrol">
+        <fieldset *ngFor="let personData of Person" class="list">
+          <div>
+            <mat-icon class="iconList">assignment_ind</mat-icon>
+            <span class="iconForm">{{n}}</span>
+          </div>
+          <span>Nombre:</span>
+          <mat-form-field>
+            <input matInput [(ngModel)]="personData.name" name="name" type="text">
+          </mat-form-field>
+          <span>Apellidos</span>
+          <mat-form-field>
+            <input matInput [(ngModel)]="personData.lastName" name="lastName" max="129" min="0" type="text">
+          </mat-form-field>
+          <span>Edad:</span>
+          <mat-form-field>
+            <input matInput [(ngModel)]="personData.age" name="age" max="129" min="0" type="text">
+          </mat-form-field>
+          <span>DNI:</span>
+          <mat-form-field>
+            <input matInput [(ngModel)]="personData.legalId" name="legalId" max="129" min="0" type="text">
+          </mat-form-field>
+          <span>Fecha de cumpleaños:</span>
+          <mat-form-field>
+            <input matInput [(ngModel)]="personData.birthday" name="birthday" max="129" min="0" type="date">
+          </mat-form-field>
+          <span>Color favorito:</span>
+          <mat-form-field>
+            <input matInput [(ngModel)]="personData.favoriteColor" name="favoriteColor" max="129" min="0" type="text">
+          </mat-form-field>
+          <span>Sexo:</span>
+          <mat-form-field>
+            <input matInput [(ngModel)]="personData.gender" name="gender" max="129" min="0" type="text">
+          </mat-form-field>
+          <input value="Eliminar" type="button" mat-raised-button class="btnDeleted" (click)="deleteContact(person)"/>
+
+        </fieldset>
+      </div>
+    </form>
+  </mat-card-content>
+
+
+</main>
+
+
+
